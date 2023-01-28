@@ -1,58 +1,52 @@
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import Box, { BoxProps } from "@mui/material/Box";
+// import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
-import { Posts } from "./Posts";
-import "./App.css";
-import { observer } from "mobx-react";
-import observableNumberStore from "./store/numberCounter";
-import App2 from './App2';
-import Child from "./Child";
+// const MyBox = (
+//   <Box
+//     sx={{
+//       width: 300,
+//       height: 300,
+//       backgroundColor: "primary.dark",
+//       "&:hover": {
+//         backgroundColor: "primary.main",
+//         opacity: [0.9, 0.8, 0.7],
+//       },
+//     }}
+//   />
+// );
+// const CustomBox = styled(MyBox)<BoxProps>(({ theme }) => ({
+//   width: 300,
+//   color: theme.palette.success.main,
+//   '& .MuiSlider-thumb': {
+//     '&:hover, &.Mui-focusVisible': {
+//       boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
+//     },
+//     '&.Mui-active': {
+//       boxShadow: `0px 0px 0px 14px ${alpha(theme.palette.success.main, 0.16)}`,
+//     },
+//   },
+// }));
 
-@observer
-class App extends React.Component {
-  componentDidUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<{}>,
-    snapshot?: any
-  ): void {
-    console.log("App1 Rerender");
-  }
-  render() {
+const MyComponent = styled("div")({
+  // color: "darkcyan",
+  padding: 20,
+  width:300,
+  height:300,
+  backgroundColor:'darkcyan'
+});
 
-    return (
-      <>
-        <div>{observableNumberStore.num}</div>
-        <ul>
-          {observableNumberStore.todos.map((todo) => {
-            return <li>{todo.name}</li>;
-          })}
-        </ul>
-        <button
-          onClick={() => {
-            observableNumberStore.increaseAction(1);
-          }}
-        >
-          증가
-        </button>
-        <button
-          onClick={() => {
-            observableNumberStore.decreaseAction(1);
-          }}
-        >
-          감가
-        </button>
-        <button
-          onClick={() => {
-            observableNumberStore.addTodos({ name: "숙제1" });
-          }}
-        >
-          일정추가
-        </button>
-        {/* <App2/> */}
-      </>
-    );
-  }
-}
+const CustomComponent = styled(MyComponent)({
+  padding:50,
+  backgroundColor:'red'
+})
+const App = () => {
+  return (
+    <div>
+      <CustomComponent>hello</CustomComponent>
+    </div>
+  );
+};
 
 export default App;
